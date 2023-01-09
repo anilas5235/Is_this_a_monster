@@ -1,13 +1,18 @@
+using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private int _maxExtraJumps =2, _currentExtraJumps;
-    private float _jumpForce = 10;
-    private bool _isGrounded;
+    public int _maxExtraJumps;
+    private int _currentExtraJumps;
+    public float _jumpForce;
+    public bool _isGrounded, _isSliding = false;
+    public float characterSpeed;
     [SerializeField] private Transform _groundDetectPositionTransform;
+    [SerializeField] private Animator _animator;
 
     [SerializeField] private LayerMask ground;
     // Start is called before the first frame update
@@ -20,15 +25,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.4f, ground);
-        rb.velocity = new Vector2(5, rb.velocity.y);
-        if (Input.GetButtonDown("Jump") && _currentExtraJumps > 0)
+        rb.velocity = new Vector2(characterSpeed, rb.velocity.y);
+        if ((Input.GetButtonDown("Jump")|| Input.GetButtonDown("Fire1")) && _currentExtraJumps > 0)
         {
             rb.velocity = Vector2.up * _jumpForce;
             _currentExtraJumps--;
         }
-        else if(Input.GetButton("Fire1") && _isGrounded)
+        else if(Input.GetButtonDown("Fire2") && _isGrounded && !_isSliding)
         {
-            
+           StartCoroutine( Slide());
         }
         
         
@@ -36,5 +41,13 @@ public class Player : MonoBehaviour
         {
             _currentExtraJumps = _maxExtraJumps;
         }
+    }
+
+    private IEnumerator Slide()
+    {
+        _isSliding = true;
+        _animator.Play("Slide");
+        yield return new WaitForSeconds(2f);
+        _isSliding = false;
     }
 }

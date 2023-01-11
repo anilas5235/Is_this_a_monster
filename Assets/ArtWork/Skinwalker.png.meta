@@ -1,0 +1,660 @@
+fileFormatVersion: 2
+guid: 21602ae4531385943972a0b9b0ef8a40
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4017684581721093221
+    second: Skinwalker_0
+  - first:
+      213: 5827636668126189450
+    second: Skinwalker_1
+  - first:
+      213: -2475150869659071341
+    second: Skinwalker_2
+  - first:
+      213: -4140692274522414000
+    second: Skinwalker_3
+  - first:
+      213: -7295701660578362034
+    second: Skinwalker_4
+  - first:
+      213: 6122404844123760597
+    second: Skinwalker_5
+  - first:
+      213: 823533290798147065
+    second: Skinwalker_6
+  - first:
+      213: 3215968424537061553
+    second: Skinwalker_7
+  - first:
+      213: 5554863045412514592
+    second: Skinwalker_8
+  - first:
+      213: 5284110310135469974
+    second: Skinwalker_9
+  - first:
+      213: -41056425892402324
+    second: Skinwalker_10
+  - first:
+      213: -7343757812270131222
+    second: Skinwalker_11
+  - first:
+      213: 253589955226437574
+    second: Skinwalker_12
+  - first:
+      213: 724610441210634484
+    second: Skinwalker_13
+  - first:
+      213: 314800271685123677
+    second: Skinwalker_14
+  - first:
+      213: -4371838229485861669
+    second: Skinwalker_15
+  - first:
+      213: 7897057692120888408
+    second: Skinwalker_16
+  - first:
+      213: -6869808620019629653
+    second: Skinwalker_17
+  - first:
+      213: -6010448975844184999
+    second: Skinwalker_18
+  - first:
+      213: -3242060362628127524
+    second: Skinwalker_19
+  - first:
+      213: 6993081135755785544
+    second: Skinwalker_20
+  - first:
+      213: 8361494105571349528
+    second: Skinwalker_21
+  - first:
+      213: -8509202212388476349
+    second: Skinwalker_22
+  - first:
+      213: -9045580249418420969
+    second: Skinwalker_23
+  - first:
+      213: -3204473069446373423
+    second: Skinwalker_24
+  - first:
+      213: -7297724385781337821
+    second: Skinwalker_25
+  - first:
+      213: -7419996449796638584
+    second: Skinwalker_26
+  - first:
+      213: 7463689981777802720
+    second: Skinwalker_28
+  - first:
+      213: 2690199981352966478
+    second: Skinwalker_29
+  - first:
+      213: -1153362015342639291
+    second: Skinwalker_30
+  - first:
+      213: 4945966530190477285
+    second: Skinwalker_31
+  - first:
+      213: 2859889391337198671
+    second: Skinwalker_32
+  - first:
+      213: 6488448138438092092
+    second: Skinwalker_33
+  - first:
+      213: -4862345071205190107
+    second: Skinwalker_34
+  - first:
+      213: 1243472135719829141
+    second: Skinwalker_35
+  - first:
+      213: -2564896247900912124
+    second: Skinwalker_36
+  - first:
+      213: 7966713171735713318
+    second: Skinwalker_37
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skinwalker_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1619
+        width: 681
+        height: 659
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b43f6d8215e38c0800000000000000
+      internalID: -4017684581721093221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_1
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 1816
+        width: 536
+        height: 442
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87d3bb6cacefd050800000000000000
+      internalID: 5827636668126189450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_2
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 1867
+        width: 246
+        height: 266
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39cc870e56f76add0800000000000000
+      internalID: -2475150869659071341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_4
+      rect:
+        serializedVersion: 2
+        x: 1998
+        y: 1835
+        width: 321
+        height: 413
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4dcff57ef570ca90800000000000000
+      internalID: -7295701660578362034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_10
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1206
+        width: 263
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6bafeee5632e6ff0800000000000000
+      internalID: -41056425892402324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_11
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 1100
+        width: 160
+        height: 429
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7932bbd2bb51a90800000000000000
+      internalID: -7343757812270131222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_12
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 1175
+        width: 164
+        height: 431
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c701ef78bee48300800000000000000
+      internalID: 253589955226437574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_13
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 1308
+        width: 531
+        height: 422
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f026ec6b555e0a00800000000000000
+      internalID: 724610441210634484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_14
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 1243
+        width: 544
+        height: 426
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5efcf0ed256e5400800000000000000
+      internalID: 314800271685123677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_15
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 1279
+        width: 4
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4c5041b4c1453c0800000000000000
+      internalID: -4371838229485861669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_16
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 868
+        width: 539
+        height: 437
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 854b1ad612cf79d60800000000000000
+      internalID: 7897057692120888408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_17
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 690
+        width: 307
+        height: 381
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba140d8357989a0a0800000000000000
+      internalID: -6869808620019629653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_19
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 691
+        width: 262
+        height: 313
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd42d210743e103d0800000000000000
+      internalID: -3242060362628127524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_20
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 553
+        width: 308
+        height: 382
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8457536fd3a6c0160800000000000000
+      internalID: 6993081135755785544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_22
+      rect:
+        serializedVersion: 2
+        x: 1828
+        y: 620
+        width: 544
+        height: 419
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34aed98ebad39e980800000000000000
+      internalID: -8509202212388476349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_26
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 556
+        width: 179
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 888363faa80e60990800000000000000
+      internalID: -7419996449796638584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_28
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 406
+        width: 146
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e5f18d7e7a549760800000000000000
+      internalID: 7463689981777802720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_30
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 95
+        width: 346
+        height: 380
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547c21a9b5f6effe0800000000000000
+      internalID: -1153362015342639291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_31
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 210
+        width: 222
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e789f6ba5a93a440800000000000000
+      internalID: 4945966530190477285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_33
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 262
+        width: 227
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35a52364399b0a50800000000000000
+      internalID: 6488448138438092092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skinwalker_34
+      rect:
+        serializedVersion: 2
+        x: 1959
+        y: 208
+        width: 222
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52671776bea758cb0800000000000000
+      internalID: -4862345071205190107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

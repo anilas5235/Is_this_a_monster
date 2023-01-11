@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -6,11 +7,8 @@ using UnityEngine.Serialization;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public int _maxExtraJumps;
-    private int _currentExtraJumps;
     public float _jumpForce;
-    public bool _isGrounded, _isSliding = false;
-    public float _characterSpeed;
+    public bool _isGrounded, _isSliding = false, _slideStop = false;
     [SerializeField] private Transform _groundDetectPositionTransform;
     [SerializeField] private Animator _animator;
 
@@ -24,27 +22,41 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.4f, ground);
-        rb.velocity = rb.velocity.y < 0 ? new Vector2(_characterSpeed, rb.velocity.y -5* Time.deltaTime) : new Vector2(_characterSpeed, rb.velocity.y);
-        
-        rb.velocity = new Vector2(_characterSpeed, rb.velocity.y);
-        if ((Input.GetButtonDown("Jump")|| Input.GetButtonDown("Fire1")) && _currentExtraJumps > 0 &&!_isSliding)
+        _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.3f, ground);
+        rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -2* Time.deltaTime) : new Vector2(0, rb.velocity.y);
+
+        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && !_isSliding && _isGrounded)
         {
             rb.velocity = Vector2.up * _jumpForce;
-            _currentExtraJumps--;
         }
-        else if(Input.GetButtonDown("Fire2") && _isGrounded && !_isSliding)
+        else if(Input.GetButton("Fire2") && _isGrounded && !_slideStop && !_isSliding)
         {
-           StartCoroutine( Slide());
+            StartCoroutine( SlideLimitationTimer()); StopCoroutine(SlideCoolDown()); _slideStop = false; 
+           _animator.SetBool("SlideButton",true);
+           _isSliding = true;
         }
-        if (_currentExtraJumps < _maxExtraJumps && _isGrounded) { _currentExtraJumps = _maxExtraJumps; }
+        else if((!Input.GetButton("Fire2") || _slideStop) && _isGrounded && _isSliding)
+        {
+            StopCoroutine(SlideLimitationTimer()); StartCoroutine(SlideCoolDown());
+            _animator.SetBool("SlideButton",false);
+            _isSliding = false;
+        }
     }
 
-    private IEnumerator Slide()
+    private IEnumerator SlideLimitationTimer()
     {
-        _isSliding = true;
-        _animator.Play("Slide");
-        yield return new WaitForSeconds(1.4f);
-        _isSliding = false;
+        yield return new WaitForSeconds(4f);
+        _slideStop = true;
+    }
+
+    private IEnumerator SlideCoolDown()
+    {
+        yield return new WaitForSeconds(1f);
+        _slideStop = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_groundDetectPositionTransform.position,0.3f);
     }
 }

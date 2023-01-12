@@ -22,8 +22,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
+            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+
         _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.3f, ground);
-        rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -2* Time.deltaTime) : new Vector2(0, rb.velocity.y);
+        rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -1* Time.deltaTime) : new Vector2(0, rb.velocity.y);
 
         if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && !_isSliding && _isGrounded)
         {
@@ -31,13 +34,13 @@ public class Player : MonoBehaviour
         }
         else if(Input.GetButton("Fire2") && _isGrounded && !_slideStop && !_isSliding)
         {
-            StartCoroutine( SlideLimitationTimer()); StopCoroutine(SlideCoolDown()); _slideStop = false; 
+            StartCoroutine( SlideLimitationTimer());
            _animator.SetBool("SlideButton",true);
            _isSliding = true;
         }
         else if((!Input.GetButton("Fire2") || _slideStop) && _isGrounded && _isSliding)
         {
-            StopCoroutine(SlideLimitationTimer()); StartCoroutine(SlideCoolDown());
+            StopAllCoroutines(); StartCoroutine(SlideCoolDown());
             _animator.SetBool("SlideButton",false);
             _isSliding = false;
         }

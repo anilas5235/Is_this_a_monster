@@ -46,7 +46,7 @@ public class UIManagerTileScreen : MonoBehaviour
         switch (CurrMenu)
         {
             case Menu.OptionsSelect: optionsSelectController.SetActive(false); break;
-            case Menu.StartScreen: startScreenController.SetActive(false); break;
+            case Menu.StartScreen: startScreenController.SetActive(false); Time.timeScale = 1; break;
             case Menu.AudioOptions: audioOptionsController.SetActive(false); SaveOptionsToText(); break;
             case Menu.LevelSelect: levelSelectController.SetActive(false); break;
             default: print(" Error, Menu does not exist");break;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IllusionMovement : MonoBehaviour
 {
-    [SerializeField] private float _levelSpeed;
+    public float _levelSpeed;
 
     // Update is called once per frame
     void Update()

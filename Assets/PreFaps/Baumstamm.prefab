@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1107309163413310934}
   - component: {fileID: 1107309163413310935}
   - component: {fileID: 1107309163413310933}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Baumstamm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7, y: 0.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

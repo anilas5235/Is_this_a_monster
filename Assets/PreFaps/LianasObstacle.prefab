@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1776458735063237109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.05, y: 0.08, z: 0}
-  m_LocalScale: {x: 3.08, y: 1.66, z: 1}
+  m_LocalScale: {x: 3, y: 1.66, z: 1}
   m_Children: []
   m_Father: {fileID: 6150767901051837151}
   m_RootOrder: 1
@@ -71,12 +71,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 59294503030533158, guid: a23a5a880e2018b4dab43724a96595ee, type: 3}
-  m_Color: {r: 0.5283019, g: 0.19188322, b: 0.19188322, a: 1}
+  m_Sprite: {fileID: 5622154007180583619, guid: 082f13efbcdedcc4bb93cb55722120f4, type: 3}
+  m_Color: {r: 1, g: 0.8066038, b: 0.8066038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.83}
+  m_Size: {x: 1.71, y: 1.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4109688577407305922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.37, z: 0}
+  m_LocalPosition: {x: 0, y: 1.37, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6150767901051837151}
@@ -153,12 +153,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -40
-  m_Sprite: {fileID: -4158772288375191119, guid: a23a5a880e2018b4dab43724a96595ee, type: 3}
+  m_Sprite: {fileID: 7617975858143952795, guid: a23a5a880e2018b4dab43724a96595ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.33, y: 8.19}
+  m_Size: {x: 4.33, y: 8.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -189,7 +189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7155951896461485019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.54, y: -0.31, z: 0}
+  m_LocalPosition: {x: 3.54, y: -0.31, z: -2}
   m_LocalScale: {x: 1.55, y: 1.45, z: 1}
   m_Children: []
   m_Father: {fileID: 6150767901051837151}
@@ -235,12 +235,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: -4158772288375191119, guid: a23a5a880e2018b4dab43724a96595ee, type: 3}
+  m_Sprite: {fileID: 7617975858143952795, guid: a23a5a880e2018b4dab43724a96595ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.33, y: 8.19}
+  m_Size: {x: 4.33, y: 8.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6150767901051837151}
   - component: {fileID: 5375834569543299511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LianasObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -79,10 +79,10 @@ public class UIManagerTileScreen : MonoBehaviour
 
     private void UpdateSoundOptions()
     {
-        mainAudioMixer.SetFloat("Master", main.value);
-        mainAudioMixer.SetFloat("Monster", monster.value);
-        mainAudioMixer.SetFloat("Music", music.value);
-        mainAudioMixer.SetFloat("Effects", effects.value);
+        mainAudioMixer.SetFloat("Master", (main.value *100)-80);
+        mainAudioMixer.SetFloat("Monster", (monster.value*100)-80);
+        mainAudioMixer.SetFloat("Music", (music.value*100)-80);
+        mainAudioMixer.SetFloat("Effects", (effects.value*100)-80);
     }
 
     private void SaveOptionsToText()

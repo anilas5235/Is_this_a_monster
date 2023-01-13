@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 928884515268046949}
   - component: {fileID: 928884515268046948}
   - component: {fileID: 6510090493624444410}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.97, y: 1.05}
+  m_Size: {x: 1.99, y: 0.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,8 +100,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.97, y: 0.83}
-    newSize: {x: 1.97, y: 1.05}
+    oldSize: {x: 1.99, y: 0.84}
+    newSize: {x: 1.99, y: 0.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

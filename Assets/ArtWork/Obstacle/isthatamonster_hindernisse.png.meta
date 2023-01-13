@@ -1,16 +1,37 @@
 fileFormatVersion: 2
-guid: a23a5a880e2018b4dab43724a96595ee
+guid: 23dfcffd232196242ab9feae3d526ae8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4158772288375191119
-    second: isthatamonster_hindernisse2_1
+      213: -6190714740475734518
+    second: isthatamonster_hindernisse_0
   - first:
-      213: 3020156021446079700
-    second: isthatamonster_hindernisse2_2
+      213: 2014926298593875527
+    second: isthatamonster_hindernisse_1
   - first:
-      213: 59294503030533158
-    second: isthatamonster_hindernisse2_5
+      213: -2545301563205713185
+    second: isthatamonster_hindernisse_2
+  - first:
+      213: -5979561721515403481
+    second: isthatamonster_hindernisse_3
+  - first:
+      213: 4699015867246178289
+    second: isthatamonster_hindernisse_4
+  - first:
+      213: -6909993550268602774
+    second: isthatamonster_hindernisse_7
+  - first:
+      213: -3072106368390019572
+    second: isthatamonster_hindernisse_9
+  - first:
+      213: -2474612549224810901
+    second: isthatamonster_hindernisse_13
+  - first:
+      213: -7254045246158256185
+    second: isthatamonster_hindernisse_14
+  - first:
+      213: -5825083118384815901
+    second: isthatamonster_hindernisse_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: isthatamonster_hindernisse2_1
+      name: isthatamonster_hindernisse_0
       rect:
         serializedVersion: 2
-        x: 401
-        y: 87
-        width: 433
-        height: 819
+        x: 72
+        y: 170
+        width: 199
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,20 +135,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b988a943a21946c0800000000000000
-      internalID: -4158772288375191119
+      spriteID: a065b2c4eb9261aa0800000000000000
+      internalID: -6190714740475734518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: isthatamonster_hindernisse2_2
+      name: isthatamonster_hindernisse_1
       rect:
         serializedVersion: 2
-        x: 1314
-        y: 100
-        width: 496
-        height: 819
+        x: 390
+        y: 171
+        width: 197
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d4fc8866efb9e920800000000000000
-      internalID: 3020156021446079700
+      spriteID: 746d7440bc476fb10800000000000000
+      internalID: 2014926298593875527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: isthatamonster_hindernisse2_5
+      name: isthatamonster_hindernisse_2
       rect:
         serializedVersion: 2
-        x: 1015
-        y: 223
-        width: 160
-        height: 183
+        x: 586
+        y: 155
+        width: 114
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +177,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62ca44e4908a2d000800000000000000
-      internalID: 59294503030533158
+      spriteID: fd280eeb6b54dacd0800000000000000
+      internalID: -2545301563205713185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isthatamonster_hindernisse_3
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 190
+        width: 70
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7271d8c9b44540da0800000000000000
+      internalID: -5979561721515403481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isthatamonster_hindernisse_4
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 189
+        width: 122
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ffe129e802463140800000000000000
+      internalID: 4699015867246178289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: isthatamonster_hindernisse_5
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 3
+        width: 128
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e06c8534c5292fa0800000000000000
+      internalID: -5825083118384815901
       vertices: []
       indices: 
       edges: []

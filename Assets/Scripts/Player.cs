@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private CapsuleCollider2D _ownCollider;
     private GameObject ownBody;
-    public float _jumpForce;
-    private bool _isGrounded, _isSliding = false, _slideStop = false,  _bodyVisible = true;
+    public float _jumpForce, _flickerNextTime;
+    private bool _isGrounded, _isSliding = false, _slideStop = false,  _bodyVisible = true, _isJumping, _jumpTime;
     public bool _stumbling = false;
     [SerializeField] private Transform _groundDetectPositionTransform;
     [SerializeField] private Animator _animator;
@@ -30,14 +30,23 @@ public class Player : MonoBehaviour
         if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
             UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
 
-        _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.3f, ground + obstacles);
+        _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.4f, ground + obstacles);
         rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -1* Time.deltaTime) : new Vector2(0, rb.velocity.y);
 
-        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && !_isSliding && _isGrounded)
+        if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && !_isSliding && _isGrounded && !_isJumping)
         {
             rb.velocity = Vector2.up * _jumpForce;
+            _isJumping = true;
+            _animator.SetBool("Jump", true);
+            _jumpTime = true; Invoke("SetJumpTimeFalse",1f);
         }
-        else if(Input.GetButton("Fire2") && _isGrounded && !_slideStop && !_isSliding)
+        else if(_isGrounded && _isJumping && !_jumpTime)
+        {
+            _isJumping = false;
+            _animator.SetBool("Jump",false);
+        }
+        
+        if(Input.GetButton("Fire2") && _isGrounded && !_slideStop && !_isSliding)
         {
             StartCoroutine( SlideLimitationTimer());
            _animator.SetBool("SlideButton",true);
@@ -52,37 +61,35 @@ public class Player : MonoBehaviour
 
         if (!(transform.position.x >= -0.3) && !_stumbling)
         {
+            StopCoroutine(PlayerStumbles());
             StartCoroutine(PlayerStumbles());
+        }
+        if (_stumbling && Time.time > _flickerNextTime)
+        {
+             switch (_bodyVisible)
+                    {
+                        case true: ownBody.SetActive(false); _bodyVisible = false; break;
+                        case false: ownBody.SetActive(true); _bodyVisible = true; break;
+                    }
+             _flickerNextTime += 0.1f;
         }
     }
 
     private IEnumerator PlayerStumbles()
     {
-        transform.position = new Vector3(0, -6.49f);
+        transform.position = new Vector3(0, transform.position.y);
         _stumbling = true;
-        Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(20, 10),0, obstacles);
+        _flickerNextTime = Time.time + 0.1f;
+        Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(40, 10),0, obstacles);
         foreach (var t in cols)
         { t.isTrigger = true; }
-        PlayerFlickering();
         yield return new WaitForSeconds(2f);
-        _stumbling = false;
         foreach (var t in cols)
         { t.isTrigger = false; }
         ownBody.SetActive(true); _bodyVisible = true;
+        _stumbling = false;
         
     }
-
-    private void PlayerFlickering()
-    {
-        if (!_stumbling) { return;}
-        switch (_bodyVisible)
-        {
-            case true: ownBody.SetActive(false); _bodyVisible = false; break;
-            case false: ownBody.SetActive(true); _bodyVisible = true; break;
-        }
-        if (_stumbling) { Invoke("PlayerFlickering",0.15f); }
-    }
-
     private IEnumerator SlideLimitationTimer()
     {
         yield return new WaitForSeconds(4f);
@@ -97,7 +104,11 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(_groundDetectPositionTransform.position,0.3f);
+        Gizmos.DrawSphere(_groundDetectPositionTransform.position,0.4f);
     }
-    
+
+    private void SetJumpTimeFalse()
+    {
+        _jumpTime = false;
+    }
 }

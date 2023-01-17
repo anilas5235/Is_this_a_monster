@@ -326,9 +326,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: 13
+  _flickerNextTime: 0
   _stumbling: 0
   _groundDetectPositionTransform: {fileID: 5398732159597518071}
   _animator: {fileID: 5398732160809961853}
+  Monster: {fileID: 0}
   ground:
     serializedVersion: 2
     m_Bits: 8

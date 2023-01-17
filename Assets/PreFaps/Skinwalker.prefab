@@ -233,6 +233,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathZonePosition: {fileID: 8034609223050474721}
+  Pos1: {fileID: 0}
+  Pos2: {fileID: 0}
+  Pos3: {fileID: 0}
+  fallbackSpeed: 0.5
+  _animator: {fileID: 6826758621798247219}
 --- !u!1 &2622927177621141705
 GameObject:
   m_ObjectHideFlags: 0

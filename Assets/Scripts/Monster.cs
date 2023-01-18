@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour
     [SerializeField] private Animator _animator;
     private int _dangerLevel = 1;
     private bool dangerLevelLowers = false;
+    private Coroutine DangerMeterLowering;
 
     private void Awake()
     {
@@ -19,6 +20,9 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
+            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+        
         Collider2D col = Physics2D.OverlapBox(DeathZonePosition.position, new Vector2(4, 13), 0);
         if (col)
         {
@@ -35,7 +39,7 @@ public class Monster : MonoBehaviour
 
         if (_dangerLevel > 1 && !dangerLevelLowers)
         {
-            StartCoroutine("LowerDangerLevel");
+            DangerMeterLowering = StartCoroutine("LowerDangerLevel");
         }
     }
 
@@ -53,17 +57,18 @@ public class Monster : MonoBehaviour
             return;
         }
 
+        if (DangerMeterLowering != null)
+        {
+            StopCoroutine(DangerMeterLowering);dangerLevelLowers = false;
+            DangerMeterLowering = null;
+        }
+
         switch (_dangerLevel)
         {
             case 1: break;
-            case 2:
-                transform.position = new Vector3(Pos2.position.x, transform.position.y, transform.position.z);
-                break;
-            case 3:
-                transform.position = new Vector3(Pos3.position.x, transform.position.y, transform.position.z);
-                break;
+            case 2: transform.position = new Vector3(Pos2.position.x, transform.position.y, transform.position.z); break;
+            case 3: transform.position = new Vector3(Pos3.position.x, transform.position.y, transform.position.z); break;
         }
-
         _animator.SetTrigger("Roar");
     }
 
@@ -73,5 +78,6 @@ public class Monster : MonoBehaviour
         yield return new WaitForSeconds(5f * _dangerLevel);
         _dangerLevel--;
         dangerLevelLowers = false;
+        DangerMeterLowering = null;
     }
 }

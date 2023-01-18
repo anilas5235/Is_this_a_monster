@@ -44,9 +44,9 @@ public class UIManagerInGame : MonoBehaviour
         switch (currGameState)
         {
             case GameState.Play: 
-            case GameState.Pause: pauseScreenController.SetActive(false); Time.timeScale = 1; break;
-            case GameState.Death: deathScreenController.SetActive(false); Time.timeScale = 1; break;
-            case GameState.Win: winScreenController.SetActive(false); break;
+            case GameState.Pause: pauseScreenController.SetActive(false); Time.timeScale = 1;  break;
+            case GameState.Death: deathScreenController.SetActive(false);  break;
+            case GameState.Win: winScreenController.SetActive(false);  break;
             case GameState.TipsOn: tipsController.SetActive(false); break;
             default: print(" Error, Menu does not exist");break;
             
@@ -57,9 +57,9 @@ public class UIManagerInGame : MonoBehaviour
         {
             case GameState.Play: Time.timeScale = 1;  break;
             case GameState.Pause: pauseScreenController.SetActive(true); Time.timeScale = 0; break;
-            case GameState.Death: deathScreenController.SetActive(true); Time.timeScale = 0; break;
+            case GameState.Death: deathScreenController.SetActive(true); break;
             case GameState.Win: winScreenController.SetActive(true); break;
-            case GameState.TipsOn: tipsController.SetActive(transform);Time.timeScale = 1;  break;
+            case GameState.TipsOn: tipsController.SetActive(transform); break;
         }
     }
 

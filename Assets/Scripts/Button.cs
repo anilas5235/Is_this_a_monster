@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
+using TMPro;
 using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Color _colorOff, _colorOn;
+
+    private TextMeshProUGUI _text;
+
+    private void Start()
     {
-        
+        _text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ToggleColor(bool value)
     {
-        
+        switch (value)
+        {
+            case true: _text.color = _colorOn; break;
+            case false: _text.color = _colorOff; break;
+        }
     }
 }

@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private CapsuleCollider2D _ownCollider;
     private GameObject ownBody;
     public float _jumpForce, _flickerNextTime;
     private bool _isGrounded, _isSliding = false, _slideStop = false,  _bodyVisible = true, _isJumping, _jumpTime;
@@ -23,7 +20,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ownBody = transform.GetChild(0).gameObject;
-        _ownCollider = gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class UIManagerInGame : MonoBehaviour
     public static UIManagerInGame Instance;
 
     [SerializeField] private GameObject pauseScreenController, tipsController, deathScreenController, winScreenController;
+
+    [SerializeField, ReadOnly] private float _currentTimeScale;
 
     public enum GameState
     {
@@ -29,6 +32,7 @@ public class UIManagerInGame : MonoBehaviour
     private void Start()
     {
         ToggleTips();
+        _currentTimeScale = 0.8f;
     }
 
     private void Update()
@@ -36,6 +40,15 @@ public class UIManagerInGame : MonoBehaviour
         if (Input.GetButtonDown("Cancel") && currGameState != GameState.Pause)
         {
             ChangeGameState(GameState.Pause);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (currGameState == GameState.Play || currGameState == GameState.TipsOn)
+        { 
+            _currentTimeScale += 0.01f * Time.deltaTime;
+            Time.timeScale = _currentTimeScale;
         }
     }
 

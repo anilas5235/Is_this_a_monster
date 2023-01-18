@@ -11,9 +11,14 @@ public class Button : MonoBehaviour
 
     private TextMeshProUGUI _text;
 
-    private void Start()
+    private void Awake()
     {
         _text = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    private void OnEnable()
+    {
+        if (gameObject.activeSelf) { ToggleColor(false); }
     }
 
     public void ToggleColor(bool value)

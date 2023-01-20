@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
             UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
 
         _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.4f, ground + obstacles);
-        rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -5* Time.deltaTime) : new Vector2(0, rb.velocity.y);
+        rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -10* Time.deltaTime) : new Vector2(0, rb.velocity.y);
 
         if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) && !_isSliding && _isGrounded && !_isJumping)
         {
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         }
         else if((!Input.GetButton("Fire2") || _slideStop) && _isGrounded && _isSliding)
         {
-            StopCoroutine(_currentSlideTimer); _currentSlideTimer = null;
+            if(_currentSlideTimer != null){ StopCoroutine(_currentSlideTimer); _currentSlideTimer = null;}
             StartCoroutine(SlideCoolDown());
             _animator.SetBool("SlideButton",false);
             _isSliding = false;
@@ -82,10 +82,10 @@ public class Player : MonoBehaviour
         _flickerNextTime = Time.time + 0.1f;
         Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position, new Vector2(40, 10),0, obstacles);
         foreach (var t in cols)
-        { t.isTrigger = true; }
+        { t.enabled = false; }
         yield return new WaitForSeconds(2f);
         foreach (var t in cols)
-        { t.isTrigger = false; }
+        { if(t != null) { t.enabled = true;} }
         ownBody.SetActive(true); _bodyVisible = true;
         _stumbling = false;
         

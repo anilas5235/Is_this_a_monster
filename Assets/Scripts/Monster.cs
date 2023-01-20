@@ -2,20 +2,31 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
+using Random = UnityEngine.Random;
 
 public class Monster : MonoBehaviour
 {
     public static Monster Instance;
     [SerializeField] private Transform DeathZonePosition, Pos1, Pos2, Pos3;
     [SerializeField] private float fallbackSpeed;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator, _deathAnimator;
+    [SerializeField] private VideoPlayer _roar, _trapDeath, _growl;
+
     private int _dangerLevel = 1;
+    public int deathID =1;
     private bool dangerLevelLowers = false;
     private Coroutine DangerMeterLowering;
+    private float waitTime = 10f;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        Invoke( "Growl",waitTime);
     }
 
     void Update()
@@ -43,17 +54,17 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(DeathZonePosition.position, new Vector3(4, 13, 1));
-    }
-
     public void MonsterCloseIn()
     {
         _dangerLevel++;
         if (_dangerLevel > 3)
         {
             UIManagerInGame.Instance.ChangeGameState(UIManagerInGame.GameState.Death);
+            _deathAnimator.SetInteger("deathID",deathID);
+            switch (deathID)
+            {
+                case 2: _trapDeath.Play(); break;
+            }
             return;
         }
 
@@ -70,6 +81,7 @@ public class Monster : MonoBehaviour
             case 3: transform.position = new Vector3(Pos3.position.x, transform.position.y, transform.position.z); break;
         }
         _animator.SetTrigger("Roar");
+        _roar.Play();
     }
 
     private IEnumerator LowerDangerLevel()
@@ -79,5 +91,16 @@ public class Monster : MonoBehaviour
         _dangerLevel--;
         dangerLevelLowers = false;
         DangerMeterLowering = null;
+    }
+
+    private void Growl()
+    {
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Death &&
+            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Win)
+        {
+            _growl.Play();
+            waitTime = Random.Range(10, 30);
+            Invoke( "Growl",waitTime);
+        }
     }
 }

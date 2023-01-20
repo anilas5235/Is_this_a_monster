@@ -1,5 +1,3 @@
-
-using System.Collections;
 using UnityEngine;
 
 public class BearTrapScript : MonoBehaviour
@@ -9,6 +7,8 @@ public class BearTrapScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player")&& !triggerd)
         {
+            triggerd = true;
+            Monster.Instance.deathID = 2;
             Monster.Instance.MonsterCloseIn();
             Monster.Instance.MonsterCloseIn();
             Monster.Instance.MonsterCloseIn();

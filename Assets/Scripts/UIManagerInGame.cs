@@ -9,6 +9,8 @@ public class UIManagerInGame : MonoBehaviour
 {
     public static UIManagerInGame Instance;
 
+    public float distanceRun;
+
     [SerializeField] private GameObject pauseScreenController, tipsController, deathScreenController, winScreenController;
 
     [SerializeField, ReadOnly] private float _currentTimeScale;
@@ -32,7 +34,7 @@ public class UIManagerInGame : MonoBehaviour
     private void Start()
     {
         ToggleTips();
-        _currentTimeScale = 0.8f;
+        _currentTimeScale = 1f;
     }
 
     private void Update()

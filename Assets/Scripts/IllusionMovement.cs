@@ -8,7 +8,7 @@ public class IllusionMovement : MonoBehaviour
     private float _startXPosition, _spriteXExtents, _camaraExtentsX;
     private SpriteRenderer _spriteRenderer;
     private bool _hasReset = true, _hasCycleLimitation = true;
-    [SerializeField] private bool endsWithSprite = true;
+    [SerializeField] private bool endsWithSprite = true ,forDistanceMasure = false;
     [SerializeField] private int amountOFCycles;
     private int _cycleCounter;
 
@@ -35,6 +35,7 @@ public class IllusionMovement : MonoBehaviour
             UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
         
         transform.position += new Vector3( _levelSpeed * -Time.deltaTime,0,0);
+        if (forDistanceMasure) { UIManagerInGame.Instance.distanceRun += _levelSpeed * Time.deltaTime;}
         if (_hasReset)
         {
             if (_hasCycleLimitation && _cycleCounter >= amountOFCycles) {return; }
@@ -44,7 +45,5 @@ public class IllusionMovement : MonoBehaviour
                 _cycleCounter++;
             }
         }
-
-        
     }
 }

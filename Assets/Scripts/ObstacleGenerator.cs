@@ -10,13 +10,20 @@ public class ObstacleGenerator : MonoBehaviour
     private List<GameObject> spawnedObstacles = new List<GameObject>();
     private float nextTimeToSpawn = 0;
 
+    private void Start()
+    {
+        nextTimeToSpawn = Time.time + Random.Range(1.5f,3.5f);
+    }
+
     private void Update()
     {
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
+            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+        
         if (Time.time > nextTimeToSpawn)
         {
             GenerateObstacle();
-            nextTimeToSpawn += Random.Range(1f,4f);
-            Debug.Log("obst");
+            nextTimeToSpawn += Random.Range(1.5f,3.5f);
         }
 
         if (spawnedObstacles == null) { return; }
@@ -42,10 +49,10 @@ public class ObstacleGenerator : MonoBehaviour
             Vector3 offset = new Vector3(30,0,0);offset.x += Random.Range(-2f, 2f); 
             switch (index)
             {
-                case 0: offset.y = -7.83f;  break;
-                case 1: offset.y = -7.76f; break;
-                case 2: offset.y = -7.85f; break;
-                case 3: offset.y = -8.24f; break;
+                case 0: offset.y = -6.78f+ Random.Range(-0.3f,0.3f); break; //log
+                case 1: offset.y = -6.81f+ Random.Range(-0.3f,0.3f); break; //root
+                case 2: offset.y = -6.9f + Random.Range(-0.3f,0.3f);  break; //stone
+                case 3: offset.y = -7.29f; break; //bear trap
             }
             obst.transform.position = offset;
             obst.transform.SetParent(gameObject.transform);
@@ -59,10 +66,11 @@ public class ObstacleGenerator : MonoBehaviour
             Vector3 offset = new Vector3(30,0,0);offset.x += Random.Range(-2f, 2f); 
             switch (index)
             {
-                case 0: offset.y = -3.68f; break;
-                case 1: offset.y = -3.68f; break;
-                case 2: offset.y = -3.68f; break;
-                case 3: offset.y = -0.76f; break;
+                case 0: offset.y = -2.73f + Random.Range(-0.3f,0.3f); break; //branch
+                case 1: offset.y = -2.73f + Random.Range(-0.3f,0.3f); break; //branch
+                case 2: offset.y = -2.73f + Random.Range(-0.3f,0.3f); break; //branch
+                case 3: offset.y =  0.21f + Random.Range(-0.3f,0.3f); break; //liana
+                case 4: offset.y =  -3.6f + Random.Range(-0.3f,0.3f); break; //fallen tree
             }
             obst.transform.position = offset;
             obst.transform.SetParent(gameObject.transform);

@@ -33,8 +33,9 @@ public class UIManagerInGame : MonoBehaviour
 
     private void Start()
     {
-        ToggleTips();
         _currentTimeScale = 1f;
+        Time.timeScale = _currentTimeScale;
+        ChangeGameState(GameState.TipsOn);
     }
 
     private void Update()
@@ -59,7 +60,7 @@ public class UIManagerInGame : MonoBehaviour
         switch (currGameState)
         {
             case GameState.Play: 
-            case GameState.Pause: pauseScreenController.SetActive(false); Time.timeScale = 1;  break;
+            case GameState.Pause: pauseScreenController.SetActive(false); Time.timeScale = _currentTimeScale;  break;
             case GameState.Death: deathScreenController.SetActive(false);  break;
             case GameState.Win: winScreenController.SetActive(false);  break;
             case GameState.TipsOn: tipsController.SetActive(false); break;
@@ -71,9 +72,9 @@ public class UIManagerInGame : MonoBehaviour
         switch (currGameState)
         {
             case GameState.Play: Time.timeScale = 1;  break;
-            case GameState.Pause: pauseScreenController.SetActive(true); Time.timeScale = 0; break;
-            case GameState.Death: deathScreenController.SetActive(true); break;
-            case GameState.Win: winScreenController.SetActive(true); break;
+            case GameState.Pause:Time.timeScale = 0; pauseScreenController.SetActive(true);  break;
+            case GameState.Death:Time.timeScale = 1; deathScreenController.SetActive(true); break;
+            case GameState.Win: Time.timeScale = 1; winScreenController.SetActive(true);  break;
             case GameState.TipsOn: tipsController.SetActive(transform); break;
         }
     }
@@ -104,10 +105,5 @@ public class UIManagerInGame : MonoBehaviour
         }
         Debug.Log("Change Scene to "+sceneName);
         SceneManager.LoadScene(sceneName);
-    }
-
-    public void ToggleTips()
-    {
-        ChangeGameState(currGameState == GameState.TipsOn ? GameState.Play : GameState.TipsOn);
     }
 }

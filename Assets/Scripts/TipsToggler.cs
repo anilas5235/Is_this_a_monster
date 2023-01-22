@@ -7,7 +7,7 @@ public class TipsToggler : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player") && !_triggered)
         {
-            UIManagerInGame.Instance.ToggleTips();
+            UIManagerInGame.Instance.ChangeGameState(UIManagerInGame.GameState.Play);
             _triggered = true;
         }
     }

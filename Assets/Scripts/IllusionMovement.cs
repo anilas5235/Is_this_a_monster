@@ -7,23 +7,19 @@ public class IllusionMovement : MonoBehaviour
     [SerializeField] private Camera _camera;
     private float _startXPosition, _spriteXExtents, _camaraExtentsX;
     private SpriteRenderer _spriteRenderer;
-    private bool _hasReset = true, _hasCycleLimitation = true;
+    private bool _hasReset = true, _hasCycleLimitation = false;
     [SerializeField] private bool endsWithSprite = true ,forDistanceMasure = false;
-    [SerializeField] private int amountOFCycles;
+    public int amountOFCycles;
     private int _cycleCounter;
 
     private void Start()
     {
         if (_resetGameObject == null) { _hasReset = false; }
-
-        if (amountOFCycles == 0) { _hasCycleLimitation = false;}
-        
         if (endsWithSprite)
         {
             _spriteRenderer = _resetGameObject.GetComponentInChildren<SpriteRenderer>();
             _spriteXExtents = _spriteRenderer.bounds.extents.x;
         }
-
         _startXPosition = transform.position.x;
         _camaraExtentsX = _camera.aspect * _camera.orthographicSize;
     }
@@ -33,7 +29,7 @@ public class IllusionMovement : MonoBehaviour
     {
         if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
             UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
-        
+        if (amountOFCycles > 1 && !_hasCycleLimitation) { _hasCycleLimitation = true;}
         transform.position += new Vector3( _levelSpeed * -Time.deltaTime,0,0);
         if (forDistanceMasure) { UIManagerInGame.Instance.distanceRun += _levelSpeed * Time.deltaTime;}
         if (_hasReset)

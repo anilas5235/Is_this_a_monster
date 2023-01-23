@@ -27,6 +27,7 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         Invoke( "Growl",waitTime);
+        MonsterCloseIn();
     }
 
     void Update()

@@ -23,7 +23,7 @@ public class ObstacleGenerator : MonoBehaviour
         if (Time.time > nextTimeToSpawn)
         {
             GenerateObstacle();
-            nextTimeToSpawn += Random.Range(1.5f,3.5f);
+            nextTimeToSpawn += Random.Range(2f,3f);
         }
 
         if (spawnedObstacles == null) { return; }
@@ -34,8 +34,6 @@ public class ObstacleGenerator : MonoBehaviour
             spawnedObstacles.RemoveAt(0);
             Destroy(del);
         }
-
-        
     }
 
     private void GenerateObstacle()

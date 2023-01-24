@@ -10,6 +10,7 @@ public class UIManagerTileScreen : MonoBehaviour
     [SerializeField] private AudioMixer mainAudioMixer;
     [SerializeField] private Slider main, music, monster, effects;
     [SerializeField] private GameObject startScreenController, optionsSelectController, audioOptionsController, levelSelectController;
+    [SerializeField] private Button[] _levelButtons;
 
     public enum Menu
     {
@@ -58,7 +59,7 @@ public class UIManagerTileScreen : MonoBehaviour
             case Menu.OptionsSelect: optionsSelectController.SetActive(true); break;
             case Menu.StartScreen: startScreenController.SetActive(true); break;
             case Menu.AudioOptions: audioOptionsController.SetActive(true); break;
-            case Menu.LevelSelect: levelSelectController.SetActive(true); break;
+            case Menu.LevelSelect: levelSelectController.SetActive(true); OpenLevelSelect(); break;
         }
     }
 
@@ -111,6 +112,7 @@ public class UIManagerTileScreen : MonoBehaviour
         switch (level)
         {
             case 3: sceneName = "Level3";break;
+            case 4: sceneName = "Level3+";break;
             default: Debug.Log("failed to load Scene, scene is not recognized"); return;
         }
         SceneManager.LoadScene(sceneName);
@@ -119,5 +121,14 @@ public class UIManagerTileScreen : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
+    }
+
+    private void OpenLevelSelect()
+    {
+        bool[] unlocked = SaveSystem.instance.GetActiveSave().levelsUnlocked;
+        for (int i = 0; i < _levelButtons.Length; i++)
+        {
+            _levelButtons[i].isUnlocked = unlocked[i];
+        }
     }
 }

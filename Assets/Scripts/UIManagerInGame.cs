@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,12 +14,13 @@ public class UIManagerInGame : MonoBehaviour
 
     [SerializeField] private GameObject pauseScreenController, tipsController, deathScreenController, winScreenController, introController, monster;
     [SerializeField] private ObstacleGenerator obstacleGenerator;
-
     [SerializeField] private IllusionMovement[] _runningLayers;
     [SerializeField, ReadOnly] private float _currentTimeScale;
+    [SerializeField] private int unlockedByThisLevel, highScoreSaveIndex;
     public bool level_Infinite = true; //true for Level mode; false for infinite mode
     public int levelLength;
     private float timeForDifficulty;
+    private TextMeshProUGUI _score;
 
     public enum GameState
     {
@@ -41,22 +43,39 @@ public class UIManagerInGame : MonoBehaviour
     {
         _currentTimeScale = 1f;
         Time.timeScale = _currentTimeScale;
-        ChangeGameState(GameState.Intro);
+        
         if (levelLength < 1) { level_Infinite = false; }
-        if (level_Infinite) { SetCycles(); }
+
+        if (level_Infinite)
+        {
+            SetCycles();
+            ChangeGameState(GameState.TipsOn);
+        }
+        else
+        {
+            ChangeGameState(GameState.Intro);
+            _score = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        }
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel") && (currGameState == GameState.Play|| currGameState == GameState.TipsOn))
+        
+        if (Input.GetButtonDown("Cancel") && (currGameState == GameState.Play))
         {
             ChangeGameState(GameState.Pause);
+        }
+        
+        if(currGameState != GameState.Play){return;}
+        if (_score )
+        {
+            _score.text = "" + Mathf.Round( distanceRun) + " m";
         }
     }
 
     private void FixedUpdate()
     {
-        if (currGameState == GameState.Play || currGameState == GameState.TipsOn)
+        if (currGameState == GameState.Play)
         {
             timeForDifficulty += Time.fixedDeltaTime;
             _currentTimeScale = 0.3f* Mathf.Log(timeForDifficulty,5f)+1.4f;
@@ -87,11 +106,11 @@ public class UIManagerInGame : MonoBehaviour
         {
             case GameState.Play: Time.timeScale = 1;  break;
             case GameState.Pause:Time.timeScale = 0; pauseScreenController.SetActive(true);  break;
-            case GameState.Death:Time.timeScale = 1; deathScreenController.SetActive(true); break;
-            case GameState.Win: Time.timeScale = 1; winScreenController.SetActive(true);  break;
+            case GameState.Death:Time.timeScale = 1; deathScreenController.SetActive(true); StartCoroutine( CheckAndSaveForHighScore()); break;
+            case GameState.Win: Time.timeScale = 1; winScreenController.SetActive(true); UnlockNextLevel(unlockedByThisLevel);  break;
             case GameState.TipsOn: tipsController.SetActive(transform); break;
             case GameState.Intro: introController.SetActive(true); monster.SetActive(false); obstacleGenerator.enabled = false;
-               StartCoroutine(ChangeToGameStateAfterTime(6f, GameState.TipsOn));
+               StartCoroutine(ChangeToGameStateAfterTime(6f, GameState.Play));
                 break;
         }
     }
@@ -106,6 +125,7 @@ public class UIManagerInGame : MonoBehaviour
             case 2: newState = GameState.Death; break;
             case 3: newState = GameState.Win; break;
             case 4: newState = GameState.TipsOn; break;
+            case 5: newState = GameState.Intro; break;
             default: Debug.Log("menuID does not exist"); return;
         }
         ChangeGameState(newState);
@@ -118,6 +138,7 @@ public class UIManagerInGame : MonoBehaviour
         {
             case 0: sceneName = "Menu"; break;
             case 3: sceneName = "Level3";break;
+            case 4: sceneName = "Level3+";break;
             default: Debug.Log("failed to load Scene, scene is not recognized"); return;
         }
         Debug.Log("Change Scene to "+sceneName);
@@ -136,5 +157,26 @@ public class UIManagerInGame : MonoBehaviour
         _runningLayers[1].amountOFCycles = levelLength *2 +1;
         _runningLayers[2].amountOFCycles = levelLength -1;
         _runningLayers[3].amountOFCycles = levelLength * 7 + 6;
+    }
+    private void UnlockNextLevel(int levelIndex)
+    {
+        if(!level_Infinite){return;}
+        SaveSystem.instance.GetActiveSave().levelsUnlocked[levelIndex] = true;
+        SaveSystem.instance.Save();
+    }
+
+    private IEnumerator CheckAndSaveForHighScore()
+    {
+        if (level_Infinite) {StopCoroutine(CheckAndSaveForHighScore()); }
+        _score.enabled = false;
+        float currentHighScore = SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex];
+        if (currentHighScore < distanceRun)
+        {
+            SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex] = distanceRun;
+        }
+        yield return new WaitForSeconds(3f);
+        _score.enabled = true;
+        _score.text = "HighScore: "+  SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex] + " m" + Environment.NewLine + "Score: "+ distanceRun + " m";
+        SaveSystem.instance.Save();
     }
 }

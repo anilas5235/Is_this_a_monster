@@ -32,8 +32,7 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
-            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
         
         Collider2D col = Physics2D.OverlapBox(DeathZonePosition.position, new Vector2(4, 13), 0);
         if (col)

@@ -27,8 +27,7 @@ public class IllusionMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
-            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
         if (amountOFCycles > 1 && !_hasCycleLimitation) { _hasCycleLimitation = true;}
         transform.position += new Vector3( _levelSpeed * -Time.deltaTime,0,0);
         if (forDistanceMasure) { UIManagerInGame.Instance.distanceRun += _levelSpeed * Time.deltaTime;}

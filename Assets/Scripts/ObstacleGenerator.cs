@@ -17,8 +17,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
-            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
         
         if (Time.time > nextTimeToSpawn)
         {
@@ -68,7 +67,7 @@ public class ObstacleGenerator : MonoBehaviour
                 case 1: offset.y = -2.73f + Random.Range(-0.3f,0.3f); break; //branch
                 case 2: offset.y = -2.73f + Random.Range(-0.3f,0.3f); break; //branch
                 case 3: offset.y =  0.21f + Random.Range(-0.3f,0.3f); break; //liana
-                case 4: offset.y =  -3.6f + Random.Range(-0.3f,0.3f); break; //fallen tree
+                case 4: offset.y = 0; break; //fallen tree
             }
             obst.transform.position = offset;
             obst.transform.SetParent(gameObject.transform);

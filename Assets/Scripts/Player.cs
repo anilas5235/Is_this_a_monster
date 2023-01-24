@@ -25,8 +25,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.TipsOn &&
-            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
+        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play) { return; }
 
         _isGrounded = Physics2D.OverlapCircle(_groundDetectPositionTransform.position, 0.4f, ground + obstacles);
         rb.velocity = rb.velocity.y < 0 ? new Vector2(0, rb.velocity.y -10* Time.deltaTime) : new Vector2(0, rb.velocity.y);

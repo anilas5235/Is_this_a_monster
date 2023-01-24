@@ -53,6 +53,11 @@ public class SaveSystem : MonoBehaviour
             {
                 activeSave.audioOptions[i] = 0.5f;
             }
+            for (int i = 0; i < activeSave.levelsUnlocked.Length; i++)
+            {
+                activeSave.levelsUnlocked[i] = false;
+            }
+            activeSave.levelsUnlocked[0] = true;
         }
     }
 
@@ -76,4 +81,6 @@ public class SaveSystem : MonoBehaviour
 public class SaveData
 {
     public float[] audioOptions = new float[10];
+    public bool[] levelsUnlocked = new bool[10];
+    public float[] highScoresForEndsLevels = new float[5];
 }

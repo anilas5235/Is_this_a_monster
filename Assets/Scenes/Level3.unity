@@ -1359,7 +1359,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2692435118476081930, guid: 969ee8edb09ddb048a9574f589a7af81, type: 2}
   m_audioClip: {fileID: 8300000, guid: dcb195862f2b00848991a747c373aaff, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2496,7 +2496,7 @@ GameObject:
   - component: {fileID: 580931435}
   - component: {fileID: 580931436}
   m_Layer: 0
-  m_Name: Monster (1)
+  m_Name: MonsterGrowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2683,7 +2683,7 @@ GameObject:
   - component: {fileID: 645977450}
   - component: {fileID: 645977451}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: MonsterRoar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2716,7 +2716,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -453354481014949223, guid: 969ee8edb09ddb048a9574f589a7af81, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.08
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0

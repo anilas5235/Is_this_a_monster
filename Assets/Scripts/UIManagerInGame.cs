@@ -78,7 +78,7 @@ public class UIManagerInGame : MonoBehaviour
         if (currGameState == GameState.Play)
         {
             timeForDifficulty += Time.fixedDeltaTime;
-            _currentTimeScale = 0.3f* Mathf.Log(timeForDifficulty,5f)+1.4f;
+            _currentTimeScale = 0.35f* Mathf.Log(timeForDifficulty,5f)+1.4f;
             Time.timeScale = _currentTimeScale;
         }
 
@@ -167,16 +167,21 @@ public class UIManagerInGame : MonoBehaviour
 
     private IEnumerator CheckAndSaveForHighScore()
     {
-        if (level_Infinite) {StopCoroutine(CheckAndSaveForHighScore()); }
-        _score.enabled = false;
-        float currentHighScore = SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex];
-        if (currentHighScore < distanceRun)
+        if (!level_Infinite)
         {
-            SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex] = distanceRun;
+            _score.enabled = false;
+            float currentHighScore = SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex];
+            if (currentHighScore < distanceRun)
+            {
+                SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex] = distanceRun;
+            }
+
+            yield return new WaitForSeconds(3f);
+            _score.enabled = true;
+            _score.text = "HighScore: " +
+                          SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex].ToString("0") + " m" +
+                          Environment.NewLine + "Score: " + distanceRun.ToString("0") + " m";
+            SaveSystem.instance.Save();
         }
-        yield return new WaitForSeconds(3f);
-        _score.enabled = true;
-        _score.text = "HighScore: "+  SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex] + " m" + Environment.NewLine + "Score: "+ distanceRun + " m";
-        SaveSystem.instance.Save();
     }
 }

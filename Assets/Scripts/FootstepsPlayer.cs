@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FootstepsPlayer : MonoBehaviour
@@ -9,6 +7,7 @@ public class FootstepsPlayer : MonoBehaviour
 
     public void TriggerFootStep()
     {
+        if(UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Play){return;}
         int a = Random.Range(0, stepsSounds.Length);
         stepsSource.PlayOneShot(stepsSounds[a]);
     }

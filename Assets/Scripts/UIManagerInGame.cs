@@ -148,7 +148,7 @@ public class UIManagerInGame : MonoBehaviour
 
     private IEnumerator ChangeToGameStateAfterTime(float waitTime, GameState newGameState)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
         ChangeGameState(newGameState);
     }
 
@@ -177,7 +177,7 @@ public class UIManagerInGame : MonoBehaviour
                 SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex] = distanceRun;
             }
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSecondsRealtime(3f);
             _score.enabled = true;
             _score.text = "HighScore: " +
                           SaveSystem.instance.GetActiveSave().highScoresForEndsLevels[highScoreSaveIndex].ToString("0") + " m" +

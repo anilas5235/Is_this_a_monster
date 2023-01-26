@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 2494057256243383422}
   - component: {fileID: 6826758621798247219}
   - component: {fileID: 2494057256243383420}
+  - component: {fileID: 6408084175886011689}
   m_Layer: 0
   m_Name: Skinwalker
   m_TagString: Untagged
@@ -238,6 +239,33 @@ MonoBehaviour:
   Pos3: {fileID: 0}
   fallbackSpeed: 0.5
   _animator: {fileID: 6826758621798247219}
+  _deathAnimator: {fileID: 0}
+  _roar: {fileID: 0}
+  _growl: {fileID: 0}
+  _steps: {fileID: 0}
+  deathID: 1
+--- !u!114 &6408084175886011689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494057256243383421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab802a65badee34ca1f724738fc6562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepsSounds:
+  - {fileID: 8300000, guid: 522713a0b0020144caf9f993697db943, type: 3}
+  - {fileID: 8300000, guid: be290111fbb92e34ebd3ca0a512a2882, type: 3}
+  - {fileID: 8300000, guid: e90c1db899f54a14ab5765721db66e1e, type: 3}
+  - {fileID: 8300000, guid: c994a600e32295942a0acd7d3b460e92, type: 3}
+  - {fileID: 8300000, guid: 055740c8d882a2040a5a1de58be94696, type: 3}
+  - {fileID: 8300000, guid: 681c8db280fa9fa4ab485d11dfb5f0cc, type: 3}
+  - {fileID: 8300000, guid: d426a1af7bb2ac0499631af1eb3be247, type: 3}
+  - {fileID: 8300000, guid: 8b41b494877d3cf43a1d19611cb022d4, type: 3}
+  stepsSource: {fileID: 0}
 --- !u!1 &2622927177621141705
 GameObject:
   m_ObjectHideFlags: 0

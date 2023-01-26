@@ -63,6 +63,12 @@ public class Monster : MonoBehaviour
             UIManagerInGame.Instance.ChangeGameState(UIManagerInGame.GameState.Death);
             _deathAnimator.SetInteger("deathID",deathID);
             SoundManager.Instance.TriggerCutSceneAudio(deathID);
+
+            switch (deathID)
+            {
+                case 1: _roar.Play(); break;
+                default: _roar.Stop(); break;
+            }
             return;
         }
 
@@ -88,7 +94,7 @@ public class Monster : MonoBehaviour
     private IEnumerator LowerDangerLevel()
     {
         dangerLevelLowers = true;
-        yield return new WaitForSeconds(5f * _dangerLevel);
+        yield return new WaitForSecondsRealtime(5f * _dangerLevel);
         _dangerLevel--;
         dangerLevelLowers = false;
         DangerMeterLowering = null;
@@ -96,12 +102,9 @@ public class Monster : MonoBehaviour
 
     private void Growl()
     {
-        if (UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Death &&
-            UIManagerInGame.Instance.currGameState != UIManagerInGame.GameState.Win)
-        {
-            _growl.Play();
-            waitTime = Random.Range(10, 30);
-            Invoke( "Growl",waitTime);
-        }
+        if (UIManagerInGame.Instance.currGameState == UIManagerInGame.GameState.Play)
+        { _growl.Play(); }
+        waitTime = Random.Range(10, 30); 
+        Invoke( "Growl",waitTime);
     }
 }

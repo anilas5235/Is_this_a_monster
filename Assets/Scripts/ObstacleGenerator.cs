@@ -37,7 +37,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     private void GenerateObstacle()
     {
-        bool ObstTyp = 0.4 < Random.Range(0f,1f);
+        bool ObstTyp = 0.5 < Random.Range(0f,1f);
         if (ObstTyp)
         {
             int index = Random.Range(0, JumpObstacles.Length);

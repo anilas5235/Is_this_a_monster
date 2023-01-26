@@ -23,32 +23,29 @@ public class SoundManager : MonoBehaviour
             case-1: break;
             case 0: ChaseStart.Stop(); break; 
             case 1: ChaseLoop.Stop(); break; 
-            case 2: ChaseClose.Stop(); break; 
+            case 2: ChaseClose.Stop(); _fastHeard.Stop(); break; 
         }
         _currentlyPlayingMusicIndex = index;
         
         switch (_currentlyPlayingMusicIndex)
         {
             case-1: break;
-            case 0: ChaseStart.Play();  if(_currentSoundChange != null){StopCoroutine(_currentSoundChange);
-                _currentSoundChange = null; } MusicChangePublicAccess(1,6f); break; 
+            case 0: ChaseStart.Play(); MusicChangePublicAccess(1,6f); break; 
             case 1: ChaseLoop.Play(); break; 
-            case 2: ChaseClose.Play(); if(_currentSoundChange != null){StopCoroutine(_currentSoundChange);_currentSoundChange = null;}
-              MusicChangePublicAccess(1, 15f); break; 
+            case 2: ChaseClose.Play(); _fastHeard.Play(); MusicChangePublicAccess(1, 15f); break; 
         }
     }
 
     private IEnumerator ChangeMusicAfterTime(int index, float time)
     {
         yield return new WaitForSecondsRealtime(time);
-        ChangeMusic(index);
         _currentSoundChange = null;
-
+        ChangeMusic(index);
     }
 
     public void MusicChangePublicAccess(int id, float time)
     {
-        if(_currentSoundChange != null){return;}
+        if(_currentSoundChange != null) {StopCoroutine(_currentSoundChange); _currentSoundChange = null; } 
         _currentSoundChange = StartCoroutine(ChangeMusicAfterTime(id, time));
     }
 
@@ -63,8 +60,7 @@ public class SoundManager : MonoBehaviour
             case 4: _fastHeard.Stop(); break;
         }
         _currentPlayingCutSceneSound = index;
-        if(_currentSoundChange != null){StopCoroutine(_currentSoundChange); _currentSoundChange = null;}
-        MusicChangePublicAccess( -1, 0f);
+        if( _currentPlayingCutSceneSound != 4) {MusicChangePublicAccess( -1, 0f);}
         switch (_currentPlayingCutSceneSound)
         {
             case 0:  _Intro.Play(); break; //IntroSound

@@ -26,6 +26,7 @@ public class UIManagerTileScreen : MonoBehaviour
     {
         MenuChangeState(Menu.StartScreen);
         LoadFromSaveText();
+        UpdateSoundOptions();
     }
 
 

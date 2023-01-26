@@ -19,12 +19,13 @@ public class TitleScreenButton : MonoBehaviour
     private void OnEnable()
     {
         if (gameObject.activeSelf) { ToggleColor(false); }
-        _myButton = GetComponent<Button>();
+        StartCoroutine(CheckButton());
     }
 
     private IEnumerator CheckButton()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        _myButton = GetComponent<Button>();
+        yield return new WaitForSecondsRealtime(0.1f);
         _myButton.interactable = isUnlocked; 
     }
 

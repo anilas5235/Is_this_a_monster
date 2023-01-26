@@ -10,7 +10,7 @@ public class UIManagerTileScreen : MonoBehaviour
     [SerializeField] private AudioMixer mainAudioMixer;
     [SerializeField] private Slider main, music, monster, effects;
     [SerializeField] private GameObject startScreenController, optionsSelectController, audioOptionsController, levelSelectController;
-    [SerializeField] private Button[] _levelButtons;
+    [SerializeField] private TitleScreenButton[] _levelButtons;
 
     public enum Menu
     {

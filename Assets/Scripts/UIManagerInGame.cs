@@ -92,7 +92,7 @@ public class UIManagerInGame : MonoBehaviour
     {
         switch (currGameState)
         {
-            case GameState.Play: 
+            case GameState.Play: break;
             case GameState.Pause: pauseScreenController.SetActive(false); Time.timeScale = _currentTimeScale;  break;
             case GameState.Death: deathScreenController.SetActive(false);  break;
             case GameState.Win: winScreenController.SetActive(false);  break;
@@ -104,13 +104,14 @@ public class UIManagerInGame : MonoBehaviour
         
         switch (currGameState)
         {
-            case GameState.Play: Time.timeScale = 1;  break;
+            case GameState.Play: Time.timeScale = 1; break;
             case GameState.Pause:Time.timeScale = 0; pauseScreenController.SetActive(true);  break;
             case GameState.Death:Time.timeScale = 1; deathScreenController.SetActive(true); StartCoroutine( CheckAndSaveForHighScore()); break;
-            case GameState.Win: Time.timeScale = 1; winScreenController.SetActive(true); UnlockNextLevel(unlockedByThisLevel);  break;
+            case GameState.Win: Time.timeScale = 1; winScreenController.SetActive(true); UnlockNextLevel(unlockedByThisLevel); SoundManager.Instance.TriggerCutSceneAudio(3); break;
             case GameState.TipsOn: tipsController.SetActive(transform); break;
             case GameState.Intro: introController.SetActive(true); monster.SetActive(false); obstacleGenerator.enabled = false;
-               StartCoroutine(ChangeToGameStateAfterTime(6f, GameState.Play));
+               StartCoroutine(ChangeToGameStateAfterTime(23f, GameState.Play)); SoundManager.Instance.TriggerCutSceneAudio(0);
+               SoundManager.Instance.MusicChangePublicAccess(0, 23f);
                 break;
         }
     }

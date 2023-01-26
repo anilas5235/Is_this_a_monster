@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using Random = UnityEngine.Random;
@@ -11,7 +9,8 @@ public class Monster : MonoBehaviour
     [SerializeField] private Transform DeathZonePosition, Pos1, Pos2, Pos3;
     [SerializeField] private float fallbackSpeed;
     [SerializeField] private Animator _animator, _deathAnimator;
-    [SerializeField] private VideoPlayer _roar, _trapDeath, _growl;
+    [SerializeField] private VideoPlayer _roar, _growl;
+    [SerializeField] private AudioSource _steps;
 
     private int _dangerLevel = 1;
     public int deathID =1;
@@ -28,6 +27,7 @@ public class Monster : MonoBehaviour
     {
         Invoke( "Growl",waitTime);
         MonsterCloseIn();
+        _steps.Play();
     }
 
     void Update()
@@ -59,12 +59,10 @@ public class Monster : MonoBehaviour
         _dangerLevel++;
         if (_dangerLevel > 3)
         {
+            _steps.Stop();
             UIManagerInGame.Instance.ChangeGameState(UIManagerInGame.GameState.Death);
             _deathAnimator.SetInteger("deathID",deathID);
-            switch (deathID)
-            {
-                case 2: _trapDeath.Play(); break;
-            }
+            SoundManager.Instance.TriggerCutSceneAudio(deathID);
             return;
         }
 
@@ -78,7 +76,10 @@ public class Monster : MonoBehaviour
         {
             case 1: break;
             case 2: transform.position = new Vector3(Pos2.position.x, transform.position.y, transform.position.z); break;
-            case 3: transform.position = new Vector3(Pos3.position.x, transform.position.y, transform.position.z); break;
+            case 3: transform.position = new Vector3(Pos3.position.x, transform.position.y, transform.position.z);
+                SoundManager.Instance.MusicChangePublicAccess(2, 0);
+                SoundManager.Instance.TriggerCutSceneAudio(4);
+                break;
         }
         _animator.SetTrigger("Roar");
         _roar.Play();

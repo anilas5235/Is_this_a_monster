@@ -1,32 +1,31 @@
-using System;
+using System.Collections;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Button : MonoBehaviour
+public class TitleScreenButton : MonoBehaviour
 {
     [SerializeField] private Color _colorOff, _colorOn;
     public bool isUnlocked = true;
-    private UnityEngine.UI.Button _myButton;
+    private Button _myButton;
 
     private TextMeshProUGUI _text;
 
     private void Awake()
     {
         _text = GetComponentInChildren<TextMeshProUGUI>();
-        _myButton = GetComponent<UnityEngine.UI.Button>();
     }
 
     private void OnEnable()
     {
         if (gameObject.activeSelf) { ToggleColor(false); }
+        _myButton = GetComponent<Button>();
     }
 
-    private void FixedUpdate()
+    private IEnumerator CheckButton()
     {
-        if (!_myButton.enabled)
-        { _myButton.interactable = isUnlocked; }
+        yield return new WaitForSecondsRealtime(1f);
+        _myButton.interactable = isUnlocked; 
     }
 
     public void ToggleColor(bool value)

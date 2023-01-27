@@ -49,7 +49,7 @@ public class UIManagerTileScreen : MonoBehaviour
         {
             case Menu.OptionsSelect: optionsSelectController.SetActive(false); break;
             case Menu.StartScreen: startScreenController.SetActive(false); Time.timeScale = 1; break;
-            case Menu.AudioOptions: audioOptionsController.SetActive(false); SaveOptionsToText(); break;
+            case Menu.AudioOptions:SaveOptionsToText(); audioOptionsController.SetActive(false);  break;
             case Menu.LevelSelect: levelSelectController.SetActive(false); break;
             default: print(" Error, Menu does not exist");break;
         }
@@ -78,33 +78,33 @@ public class UIManagerTileScreen : MonoBehaviour
         MenuChangeState(newState);
     }
 
-
     private void UpdateSoundOptions()
     {
-        mainAudioMixer.SetFloat("Master", (main.value *100)-80);
-        mainAudioMixer.SetFloat("Monster", (monster.value*100)-80);
-        mainAudioMixer.SetFloat("Music", (music.value*100)-80);
-        mainAudioMixer.SetFloat("Effects", (effects.value*100)-80);
+        mainAudioMixer.SetFloat("Master", main.value);
+        mainAudioMixer.SetFloat("Monster", monster.value);
+        mainAudioMixer.SetFloat("Music", music.value);
+        mainAudioMixer.SetFloat("Effects", effects.value);
     }
 
     private void SaveOptionsToText()
     {
         mainAudioMixer.GetFloat("Master", out SaveSystem.instance.GetActiveSave().audioOptions[0]);
-        mainAudioMixer.GetFloat("Monster", out SaveSystem.instance.GetActiveSave().audioOptions[1]);
-        mainAudioMixer.GetFloat("Music", out SaveSystem.instance.GetActiveSave().audioOptions[2]);
+        mainAudioMixer.GetFloat("Music", out SaveSystem.instance.GetActiveSave().audioOptions[1]);
+        mainAudioMixer.GetFloat("Monster", out SaveSystem.instance.GetActiveSave().audioOptions[2]);
         mainAudioMixer.GetFloat("Effects", out SaveSystem.instance.GetActiveSave().audioOptions[3]);
     }
     private void LoadFromSaveText()
     {
-        mainAudioMixer.SetFloat("Master", SaveSystem.instance.GetActiveSave().audioOptions[0]);
-        mainAudioMixer.SetFloat("Monster", SaveSystem.instance.GetActiveSave().audioOptions[1]);
-        mainAudioMixer.SetFloat("Music", SaveSystem.instance.GetActiveSave().audioOptions[2]);
-        mainAudioMixer.SetFloat("Effects", SaveSystem.instance.GetActiveSave().audioOptions[3]);
+        float[] optionsValues = SaveSystem.instance.GetActiveSave().audioOptions;
+        mainAudioMixer.SetFloat("Master", optionsValues[0]);
+        mainAudioMixer.SetFloat("Music", optionsValues[1]);
+        mainAudioMixer.SetFloat("Monster", optionsValues[2]);
+        mainAudioMixer.SetFloat("Effects", optionsValues[3]);
 
-        main.value = SaveSystem.instance.GetActiveSave().audioOptions[0];
-        monster.value = SaveSystem.instance.GetActiveSave().audioOptions[1];
-        music.value = SaveSystem.instance.GetActiveSave().audioOptions[2];
-        effects.value = SaveSystem.instance.GetActiveSave().audioOptions[3];
+        main.value = optionsValues[0];
+        music.value = optionsValues[1];
+        monster.value = optionsValues[2];
+        effects.value = optionsValues[3];
     }
 
     public void LoadLevel(int level)

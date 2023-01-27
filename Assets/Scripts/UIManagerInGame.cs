@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 public class UIManagerInGame : MonoBehaviour
 {
@@ -12,15 +12,18 @@ public class UIManagerInGame : MonoBehaviour
 
     public float distanceRun;
 
-    [SerializeField] private GameObject pauseScreenController, tipsController, deathScreenController, winScreenController, introController, monster;
+    [SerializeField] private GameObject pauseScreenController, tipsController, deathScreenController, winScreenController, introController, monsterGameObject, audioOptionsController;
     [SerializeField] private ObstacleGenerator obstacleGenerator;
     [SerializeField] private IllusionMovement[] _runningLayers;
     [SerializeField, ReadOnly] private float _currentTimeScale;
     [SerializeField] private int unlockedByThisLevel, highScoreSaveIndex;
+    [SerializeField] private Slider main, music, monster, effects;
     public bool level_Infinite = true; //true for Level mode; false for infinite mode
     public int levelLength;
     private float timeForDifficulty;
     private TextMeshProUGUI _score;
+    [SerializeField] private AudioMixer mainAudioMixer;
+    private Coroutine currntChangeAfterTime;
 
     public enum GameState
     {
@@ -30,6 +33,7 @@ public class UIManagerInGame : MonoBehaviour
         Win =3,
         TipsOn =4,
         Intro =5,
+        AudioOptions = 6,
     }
 
     public GameState currGameState;
@@ -56,14 +60,26 @@ public class UIManagerInGame : MonoBehaviour
             ChangeGameState(GameState.Intro);
             _score = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         }
+        LoadFromSaveText();
+        UpdateSoundOptions();
     }
 
     private void Update()
     {
+        if (currGameState == GameState.AudioOptions)
+        { UpdateSoundOptions(); }
         
         if (Input.GetButtonDown("Cancel") && (currGameState == GameState.Play))
         {
             ChangeGameState(GameState.Pause);
+        }
+
+        if (currGameState == GameState.Intro && Input.GetButtonDown("Fire1"))
+        {
+            StopCoroutine(currntChangeAfterTime);
+            ChangeGameState(GameState.Play);
+            SoundManager.Instance.TriggerCutSceneAudio(-1);
+            SoundManager.Instance.MusicChangePublicAccess(0,0);
         }
         
         if(currGameState != GameState.Play){return;}
@@ -97,22 +113,24 @@ public class UIManagerInGame : MonoBehaviour
             case GameState.Death: deathScreenController.SetActive(false);  break;
             case GameState.Win: winScreenController.SetActive(false);  break;
             case GameState.TipsOn: tipsController.SetActive(false); break;
-            case GameState.Intro: introController.SetActive(false); monster.SetActive(true); obstacleGenerator.enabled = true; break;
+            case GameState.Intro: introController.SetActive(false); monsterGameObject.SetActive(true); obstacleGenerator.enabled = true; break;
+            case  GameState.AudioOptions: SaveOptionsToText(); audioOptionsController.SetActive(false);  break;
             default: print(" Error, Menu does not exist");break;
         }
         currGameState = newState;
         
         switch (currGameState)
         {
-            case GameState.Play: Time.timeScale = 1; break;
-            case GameState.Pause:Time.timeScale = 0; pauseScreenController.SetActive(true);  break;
+            case GameState.Play: Time.timeScale = 1; obstacleGenerator.enabled = true; break;
+            case GameState.Pause:Time.timeScale = 0; pauseScreenController.SetActive(true); obstacleGenerator.enabled = false; break;
             case GameState.Death:Time.timeScale = 1; deathScreenController.SetActive(true); StartCoroutine( CheckAndSaveForHighScore()); break;
             case GameState.Win: Time.timeScale = 1; winScreenController.SetActive(true); UnlockNextLevel(unlockedByThisLevel); SoundManager.Instance.TriggerCutSceneAudio(3); break;
             case GameState.TipsOn: tipsController.SetActive(transform); break;
-            case GameState.Intro: introController.SetActive(true); monster.SetActive(false); obstacleGenerator.enabled = false;
-               StartCoroutine(ChangeToGameStateAfterTime(23f, GameState.Play)); SoundManager.Instance.TriggerCutSceneAudio(0);
+            case GameState.Intro: introController.SetActive(true); monsterGameObject.SetActive(false); obstacleGenerator.enabled = false;
+              currntChangeAfterTime = StartCoroutine(ChangeToGameStateAfterTime(23f, GameState.Play)); SoundManager.Instance.TriggerCutSceneAudio(0);
                SoundManager.Instance.MusicChangePublicAccess(0, 23f);
                 break;
+            case GameState.AudioOptions: Time.timeScale = 0; audioOptionsController.SetActive(true); break;
         }
     }
 
@@ -127,6 +145,7 @@ public class UIManagerInGame : MonoBehaviour
             case 3: newState = GameState.Win; break;
             case 4: newState = GameState.TipsOn; break;
             case 5: newState = GameState.Intro; break;
+            case 6: newState = GameState.AudioOptions; break;
             default: Debug.Log("menuID does not exist"); return;
         }
         ChangeGameState(newState);
@@ -184,5 +203,34 @@ public class UIManagerInGame : MonoBehaviour
                           Environment.NewLine + "Score: " + distanceRun.ToString("0") + " m";
             SaveSystem.instance.Save();
         }
+    }
+    
+    private void UpdateSoundOptions()
+    {
+        mainAudioMixer.SetFloat("Master", main.value);
+        mainAudioMixer.SetFloat("Monster", monster.value);
+        mainAudioMixer.SetFloat("Music", music.value);
+        mainAudioMixer.SetFloat("Effects", effects.value);
+    }
+
+    private void SaveOptionsToText()
+    {
+        mainAudioMixer.GetFloat("Master", out SaveSystem.instance.GetActiveSave().audioOptions[0]);
+        mainAudioMixer.GetFloat("Music", out SaveSystem.instance.GetActiveSave().audioOptions[1]);
+        mainAudioMixer.GetFloat("Monster", out SaveSystem.instance.GetActiveSave().audioOptions[2]);
+        mainAudioMixer.GetFloat("Effects", out SaveSystem.instance.GetActiveSave().audioOptions[3]);
+    }
+    private void LoadFromSaveText()
+    {
+        float[] optionsValues = SaveSystem.instance.GetActiveSave().audioOptions;
+        mainAudioMixer.SetFloat("Master", optionsValues[0]);
+        mainAudioMixer.SetFloat("Music", optionsValues[1]);
+        mainAudioMixer.SetFloat("Monster", optionsValues[2]);
+        mainAudioMixer.SetFloat("Effects", optionsValues[3]);
+
+        main.value = optionsValues[0];
+        music.value = optionsValues[1];
+        monster.value = optionsValues[2];
+        effects.value = optionsValues[3];
     }
 }

@@ -49,10 +49,11 @@ public class SaveSystem : MonoBehaviour
         else
         {
             activeSave = new SaveData();
-            for (int i = 0; i < activeSave.audioOptions.Length; i++)
-            {
-                activeSave.audioOptions[i] = 0.8f;
-            }
+            activeSave.audioOptions[0] = -10f;
+            activeSave.audioOptions[1] = 0f;
+            activeSave.audioOptions[2] = -20f;
+            activeSave.audioOptions[3] = 0f;
+
             for (int i = 0; i < activeSave.levelsUnlocked.Length; i++)
             {
                 activeSave.levelsUnlocked[i] = false;

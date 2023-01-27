@@ -53,6 +53,7 @@ public class SoundManager : MonoBehaviour
     {
         switch (_currentPlayingCutSceneSound)
         {
+            case -1: break;
             case 0:  _Intro.Stop(); break; //IntroSound
             case 1:   break; //deathNormal
             case 2: _trapDeath.Stop(); break; //deathBearTrap
@@ -63,6 +64,7 @@ public class SoundManager : MonoBehaviour
         if( _currentPlayingCutSceneSound != 4) {MusicChangePublicAccess( -1, 0f);}
         switch (_currentPlayingCutSceneSound)
         {
+            case -1: break;
             case 0:  _Intro.Play(); break; //IntroSound
             case 1:   break; //deathNormal
             case 2: _trapDeath.Play(); break; //deathBearTrap

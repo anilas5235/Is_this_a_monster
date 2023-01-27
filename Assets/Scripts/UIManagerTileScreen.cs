@@ -49,7 +49,7 @@ public class UIManagerTileScreen : MonoBehaviour
         {
             case Menu.OptionsSelect: optionsSelectController.SetActive(false); break;
             case Menu.StartScreen: startScreenController.SetActive(false); Time.timeScale = 1; break;
-            case Menu.AudioOptions:SaveOptionsToText(); audioOptionsController.SetActive(false);  break;
+            case Menu.AudioOptions: SaveOptionsToText(); audioOptionsController.SetActive(false); SaveSystem.instance.Save(); break;
             case Menu.LevelSelect: levelSelectController.SetActive(false); break;
             default: print(" Error, Menu does not exist");break;
         }

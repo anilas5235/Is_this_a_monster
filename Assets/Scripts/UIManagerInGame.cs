@@ -114,7 +114,7 @@ public class UIManagerInGame : MonoBehaviour
             case GameState.Win: winScreenController.SetActive(false);  break;
             case GameState.TipsOn: tipsController.SetActive(false); break;
             case GameState.Intro: introController.SetActive(false); monsterGameObject.SetActive(true); obstacleGenerator.enabled = true; break;
-            case  GameState.AudioOptions: SaveOptionsToText(); audioOptionsController.SetActive(false);  break;
+            case  GameState.AudioOptions: SaveOptionsToText(); audioOptionsController.SetActive(false); SaveSystem.instance.Save(); break;
             default: print(" Error, Menu does not exist");break;
         }
         currGameState = newState;

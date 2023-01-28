@@ -161,7 +161,6 @@ public class UIManagerInGame : MonoBehaviour
             case 4: sceneName = "Level3+";break;
             default: Debug.Log("failed to load Scene, scene is not recognized"); return;
         }
-        Debug.Log("Change Scene to "+sceneName);
         SceneManager.LoadScene(sceneName);
     }
 

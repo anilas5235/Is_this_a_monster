@@ -112,6 +112,7 @@ public class UIManagerTileScreen : MonoBehaviour
         string sceneName;
         switch (level)
         {
+            case 0: sceneName = "Menu"; break;
             case 3: sceneName = "Level3";break;
             case 4: sceneName = "Level3+";break;
             default: Debug.Log("failed to load Scene, scene is not recognized"); return;
